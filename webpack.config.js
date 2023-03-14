@@ -1,5 +1,5 @@
-const path = require('path');
-settings = require('./settings');
+const path = require('path')
+settings = require('./settings')
 
 module.exports = {
   entry: settings.themeLocation + 'ts/scripts.ts',
@@ -7,7 +7,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.ts?$/,
+        test: [/\.ts?$/, /\.tsx?$/],
         use: 'ts-loader',
         exclude: /node_modules/,
       },
@@ -20,5 +20,4 @@ module.exports = {
     filename: 'scripts.js',
     path: path.resolve(__dirname, 'dist'),
   },
-};
-
+}

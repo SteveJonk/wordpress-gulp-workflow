@@ -13,7 +13,6 @@ module.exports = {
           options: {
             transpileOnly: true,
             experimentalWatchApi: true,
-            configFile: './tsconfig.json',
           },
         },
         exclude: /node_modules/,

@@ -1,6 +1,8 @@
 var gulp = require('gulp'),
-  sass = require('gulp-sass'),
+  sass = require('gulp-sass')(require('sass')),
   settings = require('./settings'),
+  webpackDevMiddleware = require('webpack-dev-middleware'),
+  webpackHotMiddleware = require('webpack-hot-middleware'),
   webpack = require('webpack'),
   browserSync = require('browser-sync').create(),
   postcss = require('gulp-postcss'),
@@ -12,8 +14,10 @@ var gulp = require('gulp'),
   mixins = require('postcss-mixins'),
   colorFunctions = require('postcss-color-function'),
   minify = require('gulp-uglify'),
-  cleanCss = require('gulp-clean-css')
+  cleanCss = require('gulp-clean-css'),
+  webpackConfig = require('./webpack.config')
 
+var bundler = webpack(webpackConfig)
 var sassPaths = ['./node_modules']
 var postProcessors = [cssvars, cssImport, mixins, nested, rgba, colorFunctions, autoprefixer]
 
@@ -63,8 +67,17 @@ gulp.task('scripts', function (callback) {
 gulp.task('watch', function () {
   browserSync.init({
     notify: false,
-    proxy: settings.urlToPreview,
+    proxy: {
+      target: settings.urlToPreview,
+    },
     ghostMode: false,
+    middleware: [
+      webpackDevMiddleware(bundler, {
+        publicPath: webpackConfig.output.publicPath,
+        stats: { colors: true },
+      }),
+      webpackHotMiddleware(bundler),
+    ],
   })
 
   gulp.watch(settings.themeLocation + '/*.php', function () {

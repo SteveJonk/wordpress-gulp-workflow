@@ -1,8 +1,13 @@
+const webpack = require('webpack')
 const path = require('path')
 settings = require('./settings')
 
 module.exports = {
-  entry: settings.themeLocation + 'ts/scripts.ts',
+  entry: [
+    'webpack/hot/dev-server',
+    'webpack-hot-middleware/client',
+    settings.themeLocation + 'ts/scripts.ts',
+  ],
   mode: 'development',
   module: {
     rules: [
@@ -19,6 +24,7 @@ module.exports = {
       },
     ],
   },
+  plugins: [new webpack.HotModuleReplacementPlugin()],
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
   },

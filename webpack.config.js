@@ -8,7 +8,7 @@ module.exports = {
     'webpack-hot-middleware/client',
     settings.themeLocation + 'ts/scripts.ts',
   ],
-  mode: 'development',
+  mode: process.env.NODE_ENV || 'development',
   module: {
     rules: [
       {

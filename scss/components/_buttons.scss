@@ -1,0 +1,52 @@
+button,
+.button {
+  border: none;
+  cursor: pointer;
+  font-family: $text-header;
+  background-color: $common-black !important;
+  border-radius: 10000px !important;
+  color: white !important;
+  font-weight: 700 !important;
+  box-shadow: none;
+  text-decoration: none;
+  padding: 0.667em 1.333em;
+  font-size: 1em !important;
+  transition: all 0.2s;
+  letter-spacing: 2px;
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.wp-core-ui .button-primary,
+.wp-core-ui .button {
+  border: none;
+}
+
+.wp-block-buttons {
+  font-family: $text-header;
+  & .wp-block-button {
+    letter-spacing: 2px;
+    transition: all 0.2s;
+    &:hover {
+      opacity: 0.8;
+    }
+    &.is-style-outline {
+      &:hover {
+        opacity: 1;
+      }
+      & a {
+        background-color: transparent;
+        color: white;
+        border: 2px solid white;
+        border-radius: 1000px;
+        transition: all 0.3s;
+        &:hover {
+          background-color: white;
+          color: $common-black !important;
+          mix-blend-mode: screen;
+        }
+      }
+    }
+  }
+}

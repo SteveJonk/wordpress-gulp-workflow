@@ -1,0 +1,21 @@
+.container,
+.is-style-container {
+  padding: 0 20px;
+
+  @include onlyDesktop {
+    max-width: 1450px;
+    margin: 0 auto;
+  }
+}
+
+.wp-block-group {
+  &.has-background {
+    @include Mobile {
+      padding: 20px;
+    }
+  }
+}
+
+div.wp-block-group.has-background {
+  padding: 0;
+}

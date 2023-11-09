@@ -107,3 +107,5 @@ gulp.task(
     cb()
   })
 )
+
+gulp.task('build', gulp.series('styles', 'scripts', 'minify'))

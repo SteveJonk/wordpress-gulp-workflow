@@ -2,12 +2,16 @@ const webpack = require('webpack')
 const path = require('path')
 settings = require('./settings')
 
+const isProduction = process.env.NODE_ENV === 'production'
+
 module.exports = {
-  entry: [
-    'webpack/hot/dev-server',
-    'webpack-hot-middleware/client',
-    settings.themeLocation + 'ts/scripts.ts',
-  ],
+  entry: !isProduction
+    ? [
+        'webpack/hot/dev-server',
+        'webpack-hot-middleware/client',
+        settings.themeLocation + 'ts/scripts.ts',
+      ]
+    : [settings.themeLocation + 'ts/scripts.ts'],
   mode: process.env.NODE_ENV || 'development',
   module: {
     rules: [
@@ -25,6 +29,8 @@ module.exports = {
     ],
   },
   plugins: [new webpack.HotModuleReplacementPlugin()],
+
+  cache: true,
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
   },

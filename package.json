@@ -10,7 +10,8 @@
     "watch": "gulp watch",
     "styles": "gulp styles",
     "scripts": "gulp scripts",
-    "minify": "gulp minify"
+    "minify": "gulp minify",
+    "build": "NODE_ENV=production gulp build"
   },
   "author": "",
   "license": "ISC",
